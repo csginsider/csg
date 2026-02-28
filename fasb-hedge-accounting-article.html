@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hedge Accounting's Long Overdue Reckoning | Sean Prince</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #1a1614;
+    --paper: #faf8f4;
+    --accent: #b5340a;
+    --accent-light: #e8d5cf;
+    --rule: #d4c9be;
+    --mid: #6b5f56;
+    --highlight: #f5f0e8;
+    --quote-bar: #b5340a;
+    --chart-1: #b5340a;
+    --chart-2: #e07a5f;
+    --chart-3: #f2cc8f;
+    --chart-4: #3d405b;
+    --chart-5: #81b29a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 0;
+    text-align: center;
+    letter-spacing: 0.25em;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .masthead a { color: var(--accent-light); text-decoration: none; }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 72px 32px 48px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .hero-deck {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--mid);
+    font-style: italic;
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+
+  .byline {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .byline span { display: flex; align-items: center; gap: 6px; }
+  .byline .dot { color: var(--rule); }
+
+  /* ── ARTICLE BODY ── */
+  .article-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    margin-bottom: 56px;
+    border-radius: 0 4px 4px 0;
+  }
+  .toc h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .toc ol {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .toc a:hover { color: var(--accent); text-decoration: underline; }
+
+  /* ── SECTION HEADINGS ── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 64px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    padding-top: 8px;
+    border-top: 2px solid var(--ink);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 16px;
+    margin-top: 40px;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 22px; }
+
+  /* ── PULL QUOTES ── */
+  .pull-quote {
+    border-left: 4px solid var(--quote-bar);
+    margin: 40px 0;
+    padding: 20px 28px;
+    background: var(--highlight);
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .pull-quote cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-style: normal;
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 32px;
+    margin: 40px 0;
+    border-radius: 2px;
+  }
+  .callout h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 14px;
+  }
+  .callout p { font-size: 15px; color: var(--paper); margin-bottom: 10px; line-height: 1.65; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .callout-neutral {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    padding: 24px 28px;
+    margin: 40px 0;
+  }
+  .callout-neutral h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .callout-neutral p { font-size: 15px; margin-bottom: 8px; line-height: 1.65; }
+  .callout-neutral p:last-child { margin-bottom: 0; }
+
+  /* ── FILING SPOTLIGHT ── */
+  .filing {
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--chart-4);
+    padding: 24px 28px;
+    margin: 36px 0;
+    background: #fff;
+  }
+  .filing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--chart-4);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .filing-label::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--chart-4);
+    border-radius: 50%;
+  }
+  .filing h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .filing p { font-size: 15px; line-height: 1.65; margin-bottom: 8px; }
+  .filing p:last-child { margin-bottom: 0; }
+
+  /* ── CHARTS ── */
+  .chart-container {
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 28px 24px;
+    margin: 40px 0;
+  }
+  .chart-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 6px;
+  }
+  .chart-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .chart-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--mid);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* Bar Chart SVG styles */
+  .bar-chart { width: 100%; overflow: visible; }
+  .bar-label { font-family: 'DM Mono', monospace; font-size: 11px; fill: var(--mid); }
+  .bar-value { font-family: 'DM Mono', monospace; font-size: 11px; fill: #fff; font-weight: 500; }
+  .bar-value-outside { font-family: 'DM Mono', monospace; font-size: 11px; fill: var(--ink); font-weight: 500; }
+  .axis-line { stroke: var(--rule); stroke-width: 1; }
+  .grid-line { stroke: var(--rule); stroke-width: 0.5; stroke-dasharray: 3,3; }
+
+  /* Horizontal bar */
+  .hbar-track {
+    height: 10px;
+    background: var(--highlight);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 4px 0 12px;
+    position: relative;
+  }
+  .hbar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin: 36px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--rule));
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 5px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .timeline-item p { font-size: 15px; margin-bottom: 0; }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 15px; }
+  .compare-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.55; }
+  .compare-table tr:nth-child(even) td { background: var(--highlight); }
+  .compare-table .tag-good { color: #2d6a4f; font-weight: 600; }
+  .compare-table .tag-bad { color: var(--accent); font-weight: 600; }
+
+  /* ── PROJECT PLAN VISUAL ── */
+  .project-plan {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin: 36px 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .project-col {
+    padding: 24px 20px;
+    background: #fff;
+  }
+  .project-col:first-child { background: var(--ink); color: var(--paper); }
+  .project-col:nth-child(2) { background: var(--highlight); }
+  .project-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .project-col:first-child .project-header { color: var(--accent-light); }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .project-col:first-child .project-title { color: var(--paper); }
+  .project-items { list-style: none; padding: 0; }
+  .project-items li {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .project-col:first-child .project-items li { border-bottom-color: rgba(255,255,255,0.15); color: var(--paper); }
+  .project-items li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-family: 'DM Mono', monospace;
+  }
+  .project-col:first-child .project-items li::before { color: var(--accent-light); }
+  .project-timeline {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    margin-top: 16px;
+    color: var(--mid);
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+  .project-col:first-child .project-timeline { color: var(--accent-light); border-top-color: rgba(255,255,255,0.2); }
+
+  /* ── PATH 1 vs PATH 2 ── */
+  .path-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 36px 0;
+  }
+  .path-card { border: 1px solid var(--rule); padding: 24px; }
+  .path-card.preferred { border-color: var(--accent); border-width: 2px; }
+  .path-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .path-card.preferred .path-label { color: var(--accent); }
+  .path-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+  .path-card ul { list-style: none; padding: 0; }
+  .path-card ul li { font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 8px; line-height: 1.5; }
+  .path-card ul li::before { content: '▸'; color: var(--mid); font-size: 10px; margin-top: 3px; flex-shrink: 0; }
+  .path-card.preferred ul li::before { color: var(--accent); }
+  .board-sentiment {
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 8px 12px;
+    background: var(--highlight);
+    border-radius: 2px;
+    line-height: 1.55;
+  }
+  .board-sentiment strong { color: var(--accent); }
+
+  /* ── ISSUE HEADERS ── */
+  .issue-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px 28px;
+    margin: 56px 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .issue-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .issue-header-text {}
+  .issue-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 4px;
+  }
+  .issue-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--paper);
+    border: none;
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .rule-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0;
+    color: var(--rule);
+  }
+  .rule-divider::before, .rule-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .rule-divider span {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 32px;
+    text-align: center;
+    margin-top: 80px;
+  }
+  .footer p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 540px; margin: 0 auto 12px; }
+  .footer strong { color: var(--accent-light); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { padding: 48px 20px 36px; }
+    .article-body { padding: 40px 20px 60px; }
+    .project-plan { grid-template-columns: 1fr; }
+    .path-compare { grid-template-columns: 1fr; }
+    .issue-header { flex-direction: column; gap: 12px; }
+    .issue-number { font-size: 36px; }
+  }
+
+  /* ── ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1, .hero-deck, .byline { animation: fadeUp 0.7s ease both; }
+  .hero h1 { animation-delay: 0.1s; }
+  .hero-deck { animation-delay: 0.2s; }
+  .byline { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <a href="#">Principles &amp; Practice</a> &nbsp;·&nbsp; A Substack on Financial Reporting That Matters
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-kicker">FASB Watch · February 2026</div>
+  <h1>Hedge Accounting's Long Overdue Reckoning</h1>
+  <p class="hero-deck">The FASB just voted to draft its first exposure draft on hedge accounting reform in years. But the bigger story is what happened next — a unanimous board leaning toward scrapping the entire 27-year-old model and starting over.</p>
+  <div class="byline">
+    <span>By <strong>Sean Prince, CPA/CFA</strong></span>
+    <span class="dot">·</span>
+    <span>February 28, 2026</span>
+    <span class="dot">·</span>
+    <span>~18 min read</span>
+  </div>
+</header>
+
+<!-- ARTICLE BODY -->
+<main class="article-body">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <h3>In This Article</h3>
+    <ol>
+      <li><a href="#origin">The Original Sin: FAS 133's Unfinished Business</a></li>
+      <li><a href="#issue1">Issue 1: The HTM Problem — SVB's Ghost</a></li>
+      <li><a href="#issue2">Issue 2: The SOFR Benchmark Trap</a></li>
+      <li><a href="#issue3">Issue 3: Cross-Currency Swaps &amp; The Post-LIBOR Void</a></li>
+      <li><a href="#medium">Medium Term: PLM for Liabilities</a></li>
+      <li><a href="#longterm">The Big Picture: Path 1 vs. Path 2</a></li>
+      <li><a href="#practitioners">What This Means for Practitioners</a></li>
+    </ol>
+  </nav>
+
+  <p>On February 25, 2026, the FASB's Board voted unanimously — seven for seven — to add a project to its technical agenda addressing three targeted hedge accounting improvements and to authorize staff to draft an exposure draft for a 60-day comment period. The vote itself is news. But what made this meeting genuinely significant was the conversation that surrounded it.</p>
+
+  <p>Board member after board member tilted toward what staff called "Path 2" for the long-term project: a wholesale reconception of hedge accounting from first principles. Christine McDonnell, preparing for her final months on the board, put it plainly: the profession has spent years <em>"trying to force square economics into a round accounting hole."</em> Chair Rich Jones acknowledged that no one on the board would create the standard they have today if handed a clean sheet of paper.</p>
+
+  <p>This article walks through all of it — the three near-term fixes, the real-world cases that expose each flaw, and the deeper question of whether the FASB will finally have the resolve to replace the model that FAS 133 built in 1998.</p>
+
+  <!-- ── SECTION 1 ── -->
+  <span class="section-label" id="origin">Background</span>
+  <h2>The Original Sin: FAS 133's Unfinished Business</h2>
+
+  <p>When the FASB issued FAS 133 in June 1998, it did two things simultaneously: it required all derivatives to be recognized on the balance sheet at fair value, and it created hedge accounting as a pressure-relief valve for the income statement volatility that would otherwise result. The relief was intentional and explicitly temporary. As the staff noted in the February meeting, FAS 133's hedge accounting model was conceived as <em>"a stopgap measure"</em> while the Board pursued its ultimate objective of fair value measurement for all financial instruments.</p>
+
+  <p>That broader fair value project never happened. What remained was a hedging framework designed for a world that doesn't exist — built around the assumption of discrete, one-to-one relationships between specific derivatives and specific assets or liabilities, at a time before modern treasury operations, before LIBOR cessation, before banks managed interest rate risk on an entity-wide balance sheet basis.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">Historical Context</div>
+    <div class="chart-headline">27 Years of Patchwork: ASC 815's Reform History</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1998</div>
+        <p><strong>FAS 133 issued</strong> — Derivatives on balance sheet at fair value; hedge accounting created as "stopgap."</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2007</div>
+        <p><strong>FAS 161</strong> — Enhanced disclosure requirements for derivatives and hedging.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2017</div>
+        <p><strong>ASU 2017-12</strong> — Major improvement; eliminated separate measurement of ineffectiveness, added last-of-layer method (now PLM), partial-term hedging, benchmark rate clarity.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <p><strong>ASU 2018-16</strong> — Added SOFR OIS to the list of eligible benchmark interest rates for hedge accounting — at a time when overnight was the only SOFR tenor that existed.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2020–22</div>
+        <p><strong>Topic 848</strong> — Reference rate reform relief; temporary expedients for hedging relationships affected by LIBOR transition. Sunset: December 31, 2024.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2022</div>
+        <p><strong>ASU 2022-01</strong> — Extended PLM (formerly last-of-layer) to closed portfolios of assets; allowed application to multiple layers.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <p><strong>ASU 2025-09</strong> — Targeted fix for floored SOFR loan hedging and net written option test; five discrete improvements.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <p><strong>Now:</strong> Board votes to draft exposure draft on three additional targeted fixes — while simultaneously signaling it may be time to scrap the core model entirely.</p>
+      </div>
+    </div>
+    <div class="chart-note">Source: FASB accounting standards update history. ASU = Accounting Standards Update.</div>
+  </div>
+
+  <p>Respondents to the 2025 Invitation to Comment (<em>Agenda Consultation</em>) — 29 in all — confirmed what practitioners have known for years: the incremental approach has largely run its course. As the Board meeting handout summarized, stakeholders cited complexity, the inability to reflect entity-wide hedging strategies, the prohibition on net position hedging, limited eligible risks and instruments, and disclosures that generate volume without insight.</p>
+
+  <p>Based on all of that, staff recommended a three-stage concurrent project plan. Here's the structure:</p>
+
+  <div class="project-plan">
+    <div class="project-col">
+      <div class="project-header">Short Term</div>
+      <div class="project-title">Targeted Fixes</div>
+      <ul class="project-items">
+        <li>Hedge HTM debt securities for interest rate risk</li>
+        <li>Remove OIS parameter from SOFR benchmark</li>
+        <li>Float-to-float cross-currency swaps in net investment hedges</li>
+      </ul>
+      <div class="project-timeline">Status: ED authorized 2/25/26 · 60-day comment period</div>
+    </div>
+    <div class="project-col">
+      <div class="project-header">Medium Term</div>
+      <div class="project-title">PLM for Liabilities</div>
+      <ul class="project-items">
+        <li>Extend portfolio layer method to certain liabilities</li>
+        <li>CD portfolios, insurance products</li>
+        <li>Requires amending partial-term fair value hedge framework</li>
+      </ul>
+      <div class="project-timeline">Status: Agenda addition expected later 2026</div>
+    </div>
+    <div class="project-col">
+      <div class="project-header">Long Term</div>
+      <div class="project-title">Model Reconception</div>
+      <ul class="project-items">
+        <li>Path 1: Retain mechanics, relax requirements</li>
+        <li>Path 2: Principles-based rethink from objectives</li>
+        <li>Net position hedging addressed</li>
+        <li>Entity-wide risk management reflected</li>
+      </ul>
+      <div class="project-timeline">Status: Outreach and research phase · Board leans Path 2</div>
+    </div>
+  </div>
+
+  <!-- ── ISSUE 1 ── -->
+  <div class="issue-header" id="issue1">
+    <div class="issue-number">01</div>
+    <div class="issue-header-text">
+      <div class="issue-label">Short-Term Fix · Issue 1</div>
+      <h2>The HTM Problem — SVB's Ghost</h2>
+    </div>
+  </div>
+
+  <h3>The Rule and the Tension</h3>
+  <p>Under ASC 815-20-25-43(c)(2), entities cannot designate a derivative as a hedge of interest rate risk for a held-to-maturity debt security. The logic is straightforward on its face: HTM classification requires a positive intent and ability to hold the security to maturity regardless of fair value changes. If you're hedging against fair value changes, can you really claim that intent?</p>
+
+  <p>Banks and their auditors have lived with this tension for decades. But as the FASB staff noted in the meeting handout, <em>"interest rate risk is dynamically managed by financial institutions on an overall balance sheet basis, not an individual security basis, and HTM debt securities contribute toward an entity's overall interest rate risk exposure regardless of its accounting classification."</em></p>
+
+  <p>In other words: a bank doesn't stop being exposed to rate movements because it wrote "held-to-maturity" on the filing cabinet.</p>
+
+  <h3>The Real-World Reckoning: Silicon Valley Bank</h3>
+  <p>The most devastating illustration of this flaw isn't hypothetical. It played out publicly in March 2023 when Silicon Valley Bank collapsed under the weight of its own balance sheet — a collapse that accounting rules actively made worse.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">SVB Financial Group · December 31, 2022</div>
+    <div class="chart-headline">The Hidden Loss That Wiped Out a Bank</div>
+
+    <svg viewBox="0 0 660 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <defs>
+        <!-- Diagonal hatch for "hidden" / footnote-only section -->
+        <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" stroke="#b5340a" stroke-width="1.5" stroke-opacity="0.35"/>
+        </pattern>
+      </defs>
+
+      <!-- ── LEFT PANEL: HTM STACKED BAR ── -->
+      <!-- Panel label -->
+      <text x="160" y="18" font-family="'DM Mono',monospace" font-size="10" fill="#6b5f56" text-anchor="middle" letter-spacing="0.12em">HTM PORTFOLIO</text>
+
+      <!-- Bar background track (full height = $91B) -->
+      <!-- Scale: $91B = 230px, so 1B = 2.527px. Origin at y=258. -->
+      <!-- $91B → y=28, $76B → 66, $15B gap → 28 to 66 -->
+
+      <!-- Fair value portion: $76B = 192px tall, from y=66 to y=258 -->
+      <rect x="80" y="66" width="160" height="192" fill="#3d405b" rx="1"/>
+      <text x="160" y="168" font-family="'DM Mono',monospace" font-size="13" fill="white" text-anchor="middle" font-weight="500">$76B</text>
+      <text x="160" y="184" font-family="'DM Mono',monospace" font-size="10" fill="rgba(255,255,255,0.7)" text-anchor="middle">Fair Value</text>
+
+      <!-- Unrealized loss portion: $15B = 38px tall, from y=28 to y=66 -->
+      <rect x="80" y="28" width="160" height="38" fill="url(#hatch)" stroke="#b5340a" stroke-width="1.5" rx="1"/>
+      <rect x="80" y="28" width="160" height="38" fill="#b5340a" fill-opacity="0.08" rx="1"/>
+      <!-- Loss label inside the hatch band -->
+      <text x="160" y="50" font-family="'DM Mono',monospace" font-size="11" fill="#b5340a" text-anchor="middle" font-weight="600">$15B unrealized loss</text>
+
+      <!-- Brace / bracket on right side of bar -->
+      <line x1="244" y1="28" x2="252" y2="28" stroke="#b5340a" stroke-width="1.5"/>
+      <line x1="252" y1="28" x2="252" y2="66" stroke="#b5340a" stroke-width="1.5"/>
+      <line x1="244" y1="66" x2="252" y2="66" stroke="#b5340a" stroke-width="1.5"/>
+
+      <!-- Book value cap line at top -->
+      <line x1="80" y1="28" x2="240" y2="28" stroke="#1a1614" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="76" y="32" font-family="'DM Mono',monospace" font-size="10" fill="#1a1614" text-anchor="end">$91B</text>
+      <text x="76" y="43" font-family="'DM Mono',monospace" font-size="9" fill="#6b5f56" text-anchor="end">Book value</text>
+
+      <!-- Fair value marker -->
+      <text x="76" y="70" font-family="'DM Mono',monospace" font-size="10" fill="#3d405b" text-anchor="end">$76B</text>
+      <text x="76" y="81" font-family="'DM Mono',monospace" font-size="9" fill="#6b5f56" text-anchor="end">Fair value</text>
+
+      <!-- Baseline -->
+      <line x1="80" y1="258" x2="240" y2="258" stroke="#1a1614" stroke-width="1.5"/>
+      <text x="160" y="276" font-family="'DM Mono',monospace" font-size="10" fill="#6b5f56" text-anchor="middle">Reported at amortized cost</text>
+      <text x="160" y="289" font-family="'DM Mono',monospace" font-size="10" fill="#b5340a" text-anchor="middle">Loss visible only in footnotes</text>
+
+      <!-- ── DIVIDER ── -->
+      <line x1="310" y1="20" x2="310" y2="265" stroke="#e2ddd8" stroke-width="1" stroke-dasharray="3,3"/>
+
+      <!-- ── RIGHT PANEL: EQUITY COMPARISON ── -->
+      <text x="490" y="18" font-family="'DM Mono',monospace" font-size="10" fill="#6b5f56" text-anchor="middle" letter-spacing="0.12em">THE SCALE OF THE PROBLEM</text>
+
+      <!-- Equity bar: $16B = 40px, from y=218 to y=258 -->
+      <rect x="360" y="218" width="120" height="40" fill="#81b29a" rx="1"/>
+      <text x="420" y="243" font-family="'DM Mono',monospace" font-size="13" fill="white" text-anchor="middle" font-weight="600">$16B</text>
+      <text x="420" y="276" font-family="'DM Mono',monospace" font-size="10" fill="#6b5f56" text-anchor="middle">SVB Total Equity</text>
+
+      <!-- Loss bar: $15B = 38px, from y=180 to y=218 — same visual size as equity -->
+      <rect x="500" y="180" width="120" height="38" fill="#b5340a" rx="1"/>
+      <text x="560" y="204" font-family="'DM Mono',monospace" font-size="13" fill="white" text-anchor="middle" font-weight="600">$15B</text>
+      <text x="560" y="276" font-family="'DM Mono',monospace" font-size="10" fill="#6b5f56" text-anchor="middle">HTM Unrealized Loss</text>
+      <text x="560" y="289" font-family="'DM Mono',monospace" font-size="9" fill="#b5340a" text-anchor="middle">(hidden in footnotes)</text>
+
+      <!-- Baseline right -->
+      <line x1="360" y1="258" x2="620" y2="258" stroke="#1a1614" stroke-width="1.5"/>
+
+      <!-- Almost-equal annotation -->
+      <line x1="480" y1="218" x2="488" y2="218" stroke="#b5340a" stroke-width="1"/>
+      <line x1="488" y1="180" x2="488" y2="218" stroke="#b5340a" stroke-width="1"/>
+      <line x1="488" y1="180" x2="500" y2="180" stroke="#b5340a" stroke-width="1"/>
+      <text x="491" y="203" font-family="'DM Mono',monospace" font-size="10" fill="#b5340a" text-anchor="middle">≈</text>
+    </svg>
+
+    <div class="chart-note">Source: SVB Financial Group 2022 Form 10-K. The $15B unrealized loss on the HTM portfolio was disclosed only in financial statement footnotes — not reflected in reported capital, earnings, or regulatory ratios. SVB's total equity at the same date was $16B.</div>
+  </div>
+
+  <p>SVB's HTM portfolio stood at $91 billion as of December 31, 2022 — roughly 43% of total assets, nearly double the large-bank peer average. The portfolio carried $15 billion in unrealized losses that year, an amount that nearly equaled the bank's entire $16 billion equity base. Because the securities were classified as HTM, those losses appeared only in footnotes, not in reported capital or earnings.</p>
+
+  <div class="filing">
+    <div class="filing-label">Filing Spotlight · SVB Financial Group 2022 10-K</div>
+    <h4>What SVB Disclosed — and What It Couldn't Hedge</h4>
+    <p>SVB had, at one point, accumulated $15.2 billion in interest rate swaps on its AFS portfolio. During the first half of 2022, as rates began to rise, management unwound $11 billion of those swaps, realizing $517 million in gains. By year-end, only $563 million in swaps remained protecting the AFS book. The HTM portfolio — more than three times larger — carried no designated hedges.</p>
+    <p>Why? Because ASC 815 prohibited it. And the accounting prohibition created a perverse dynamic: the larger a bank's HTM portfolio, the more interest rate risk accumulated on balance sheet without any mechanism to reflect economic hedging activity in reported results. Banks hedging entity-wide rate risk with derivatives would see the derivatives' fair value changes flow through earnings — creating income statement volatility — with no offsetting recognition for the HTM book.</p>
+    <p>As the Federal Reserve's own review of SVB concluded, the bank <em>"did not heed early signs of market risk from rising interest rates and removed its interest rate hedges as interest rates started to rise"</em> — and NBER research noted that the accounting prohibition itself weakened banks' incentives to hedge HTM portfolios in the first place.</p>
+  </div>
+
+  <p>Board member Fred Cannon (himself a former bank equity analyst) named the underlying dynamic explicitly in the meeting: <em>"I would say I was reflecting on the 2023 bank failures, and while it was clear in all the studies that accounting wasn't an issue or a cause of those bank failures, I think poor risk management was a cause — and it was the lack of use of, rather than the use of, derivatives and more sophisticated approaches that was a contributing factor."</em></p>
+
+  <div class="pull-quote">
+    <p>"An accounting construct should not impede entities from better reflecting their risk management activities in their financial statements."</p>
+    <cite>— FASB Board Meeting Handout, February 25, 2026</cite>
+  </div>
+
+  <p>Board Chair Rich Jones concurred: <em>"It's never really resonated with me to blame bad business decisions on accounting, but I think it is fair to say that accounting should reflect the economics."</em></p>
+
+  <h3>The Proposed Fix</h3>
+  <p>The staff recommendation is elegantly simple: remove the prohibition. Add interest rate risk as a permitted hedged risk for HTM debt securities and eliminate the related restrictions in ASC 815. An entity holding HTM securities would be able to designate qualifying hedges of interest rate risk, just as it can for AFS securities today, and apply the same hedge accounting mechanics already in the standard.</p>
+
+  <p>Notably, this does not require entities to reclassify securities — they remain HTM, continue at amortized cost, and the intent-and-ability assertion still stands. The hedge accounting simply reflects the economic reality that the entity is managing interest rate exposure across its whole balance sheet, including the HTM book. Board members also noted that the required disclosures for qualifying hedge accounting relationships would actually improve investor visibility — more transparency about hedged positions than what exists today under GAAP NIM.</p>
+
+  <div class="callout-neutral">
+    <h4>Practitioner Watch</h4>
+    <p>For financial institutions that have been managing interest rate exposure through economic hedges not designated under ASC 815 — because designation against HTM was prohibited — this change opens a significant opportunity. Once the final ASU is effective (with early adoption expected to be permitted on any date), entities should evaluate whether existing derivative activity can be prospectively designated against HTM portfolios. Fair value hedges of HTM securities would need to comply with all usual designation and documentation requirements under ASC 815-20.</p>
+    <p>One open question noted by multiple board members: can an entity combine interest rate risk with other risks (e.g., credit) in a single HTM hedge designation? The staff acknowledged this needs clarification in the drafting process.</p>
+  </div>
+
+  <!-- ── ISSUE 2 ── -->
+  <div class="issue-header" id="issue2">
+    <div class="issue-number">02</div>
+    <div class="issue-header-text">
+      <div class="issue-label">Short-Term Fix · Issue 2</div>
+      <h2>The SOFR Benchmark Trap</h2>
+    </div>
+  </div>
+
+  <h3>How We Got Here</h3>
+  <p>In 2018, when the FASB added SOFR to the list of eligible benchmark interest rates for hedge accounting purposes (ASU 2018-16), there was only one SOFR tenor in existence: overnight. The amendment was deliberately crafted around what existed at the time — the SOFR Overnight Index Swap (OIS) rate — with the expectation that the market would develop and that further guidance would follow.</p>
+
+  <p>Markets did develop. Dramatically. By the time LIBOR cessation was complete in mid-2023, Term SOFR had emerged as the dominant reference rate for commercial and middle market lending. CME Group's forward-looking Term SOFR rates — 1-month, 3-month, 6-month, 12-month — are now embedded in trillions of dollars of commercial loans, floating rate notes, securitizations, and bilateral credit facilities.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">Post-LIBOR Landscape</div>
+    <div class="chart-headline">SOFR Tenors Now Widely Used — But Only Overnight Qualifies for Hedge Accounting Benchmark Designation in Fair Value Hedges</div>
+    <table style="width:100%; border-collapse:collapse; font-size:14px; margin-top:8px;">
+      <thead>
+        <tr>
+          <th style="background:#1a1614;color:#faf8f4;padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;">SOFR Tenor</th>
+          <th style="background:#1a1614;color:#faf8f4;padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;">Common Applications</th>
+          <th style="background:#1a1614;color:#faf8f4;padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;">Eligible Benchmark (Current)</th>
+          <th style="background:#1a1614;color:#faf8f4;padding:10px 14px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;">Post-ASU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#f5f0e8;">
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">SOFR Overnight (OIS)</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Derivative discounting, overnight repo</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible</span></td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Term SOFR (1M)</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Commercial loans, CLOs</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#b5340a;font-weight:600;">✗ Not eligible (FV hedges)</span></td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible</span></td>
+        </tr>
+        <tr style="background:#f5f0e8;">
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Term SOFR (3M)</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Business loans, FRNs, securitizations</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#b5340a;font-weight:600;">✗ Not eligible (FV hedges)</span></td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Term SOFR (6M / 12M)</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;">Certain loans and notes</td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#b5340a;font-weight:600;">✗ Not eligible (FV hedges)</span></td>
+          <td style="padding:10px 14px; border-bottom:1px solid #d4c9be;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible</span></td>
+        </tr>
+        <tr style="background:#f5f0e8;">
+          <td style="padding:10px 14px;">Daily SOFR / SOFR Averages</td>
+          <td style="padding:10px 14px;">Certain hedges, institutional products</td>
+          <td style="padding:10px 14px;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible (CF hedges)</span></td>
+          <td style="padding:10px 14px;"><span style="color:#2d6a4f;font-weight:600;">✓ Eligible</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="chart-note">Source: FASB Board Meeting Handout, February 25, 2026; ASU 2018-16. FV = Fair Value; CF = Cash Flow. Note that all SOFR-based rates contractually specified in variable-rate instruments are already eligible to be hedged in most cash flow hedges — the OIS restriction currently creates a conflict between FV and CF hedge accounting.</div>
+  </div>
+
+  <h3>The Practical Problem</h3>
+  <p>The gap created a genuine practice problem. Banks and other lenders making Term SOFR-indexed loans often want to hedge the fair value of those loans using Term SOFR interest rate swaps — a perfectly matched, economically intuitive hedge. But because Term SOFR is not listed as a benchmark rate, designating a fair value hedge with a Term SOFR pay-fixed/receive-floating swap as the hedging instrument against a Term SOFR loan creates a benchmark mismatch. The hedge often fails effectiveness testing or cannot achieve designation at all.</p>
+
+  <p>ISDA's comment letter to the FASB described the problem directly: <em>"derivatives are being structured using, for example, Term SOFR and many commercial loans and debt instruments reference Term SOFR. This is clearly an opportunity for targeted narrow improvements to remove the OIS qualifier."</em></p>
+
+  <p>The problem also creates an internal GAAP inconsistency: all SOFR-based rates contractually specified in variable-rate instruments are already eligible as hedged risks in most <em>cash flow</em> hedges. The OIS restriction exists only for fair value hedges. So the same economic relationship — a bank hedging a SOFR-indexed loan — receives different treatment depending on whether the hedge is structured as a cash flow hedge or a fair value hedge. That's not coherent.</p>
+
+  <div class="pull-quote">
+    <p>"To me, that feels like a housekeeping change. It feels very appropriate to do this at this time. Markets have established behaviors and I don't think we intended to be as restrictive as it's being applied right now."</p>
+    <cite>— Marsha Hunt, FASB Board Member, February 25, 2026</cite>
+  </div>
+
+  <h3>The Proposed Fix</h3>
+  <p>Remove the "OIS" parameter from the SOFR benchmark rate designation. The amendment generalizes SOFR in a manner consistent with how LIBOR was treated — LIBOR was never restricted to a specific tenor, and SOFR shouldn't be either. All SOFR-based rates that are widely quoted and commonly referenced in interest rate transactions would become eligible for designation as the hedged benchmark risk.</p>
+
+  <div class="callout-neutral">
+    <h4>Practitioner Watch</h4>
+    <p>For entities currently using Term SOFR swaps as economic hedges but unable to achieve fair value hedge accounting designation, this opens the door. Entities with commercial loan portfolios indexed to 1-month or 3-month Term SOFR that use receive-fixed/pay-Term SOFR swaps should evaluate prospective designation once the final ASU is effective. Existing hedges designated to SOFR OIS that are highly effective will not be adversely affected — the change is additive, not restrictive. Transition is prospective; no modification of existing designated relationships is required.</p>
+  </div>
+
+  <!-- ── ISSUE 3 ── -->
+  <div class="issue-header" id="issue3">
+    <div class="issue-number">03</div>
+    <div class="issue-header-text">
+      <div class="issue-label">Short-Term Fix · Issue 3</div>
+      <h2>Cross-Currency Swaps &amp; the Post-LIBOR Void</h2>
+    </div>
+  </div>
+
+  <h3>The Technical Constraint</h3>
+  <p>For a receive-variable, pay-variable (float-for-float) cross-currency swap to qualify as a hedging instrument in a net investment hedge under ASC 815, the swap must satisfy two conditions: the interest rates on both legs must be based on the currencies in the swap, and — critically — both legs must have the same repricing intervals and dates.</p>
+
+  <p>Before LIBOR, this was manageable. LIBOR existed across multiple currencies with aligned conventions; a U.S. company with a euro-denominated subsidiary could execute a USD-LIBOR vs. EUR-LIBOR float-for-float swap with matching monthly or quarterly reset dates and achieve hedge accounting for its net investment in the subsidiary.</p>
+
+  <p>Post-LIBOR, the market has fragmented irreversibly. SOFR resets on different schedules than EURIBOR. SONIA doesn't align with CORRA. National conventions differ across jurisdictions and the differences are permanent — they're not a temporary transition artifact. As ISDA documented in its comment letter: <em>"following reference rate reform, how reset dates are applied began to vary significantly across different rates and jurisdictions. As a result, it is difficult to achieve hedge accounting using a float-to-float swap in a net investment hedge."</em></p>
+
+  <div class="chart-container">
+    <div class="chart-title">Post-LIBOR Mismatch</div>
+    <div class="chart-headline">Sample Float-for-Float Cross-Currency Swap: Reset Date Misalignment Under Current GAAP</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'DM Mono',monospace;">
+      <!-- USD leg box -->
+      <rect x="10" y="20" width="290" height="140" rx="3" fill="#f5f0e8" stroke="#d4c9be" stroke-width="1"/>
+      <text x="155" y="44" font-size="11" text-anchor="middle" fill="#b5340a" letter-spacing="0.15em" font-weight="500">USD LEG (ENTITY PAYS)</text>
+      <text x="155" y="66" font-size="13" text-anchor="middle" fill="#1a1614">Pay Term SOFR + spread</text>
+      <text x="155" y="86" font-size="11" text-anchor="middle" fill="#6b5f56">Resets: Monthly (last business day)</text>
+      <text x="155" y="104" font-size="11" text-anchor="middle" fill="#6b5f56">Term SOFR: Forward-looking, CME-published</text>
+      <text x="155" y="140" font-size="11" text-anchor="middle" fill="#3d405b">Status: ✓ Permitted</text>
+
+      <!-- EUR leg box -->
+      <rect x="380" y="20" width="290" height="140" rx="3" fill="#f5f0e8" stroke="#d4c9be" stroke-width="1"/>
+      <text x="525" y="44" font-size="11" text-anchor="middle" fill="#3d405b" letter-spacing="0.15em" font-weight="500">EUR LEG (ENTITY RECEIVES)</text>
+      <text x="525" y="66" font-size="13" text-anchor="middle" fill="#1a1614">Receive EURIBOR + spread</text>
+      <text x="525" y="86" font-size="11" text-anchor="middle" fill="#6b5f56">Resets: Quarterly (2nd business day)</text>
+      <text x="525" y="104" font-size="11" text-anchor="middle" fill="#6b5f56">EURIBOR: Bank-panel based, persistent</text>
+      <text x="525" y="140" font-size="11" text-anchor="middle" fill="#3d405b">Status: ✓ Permitted</text>
+
+      <!-- arrows -->
+      <line x1="300" y1="90" x2="380" y2="90" stroke="#1a1614" stroke-width="1.5"/>
+      <polygon points="380,86 390,90 380,94" fill="#1a1614"/>
+      <line x1="380" y1="100" x2="300" y2="100" stroke="#1a1614" stroke-width="1.5"/>
+      <polygon points="300,96 290,100 300,104" fill="#1a1614"/>
+
+      <!-- Mismatch indicator -->
+      <rect x="10" y="170" width="660" height="40" rx="2" fill="#b5340a"/>
+      <text x="340" y="188" font-size="11" text-anchor="middle" fill="white" letter-spacing="0.1em">PROBLEM: Reset intervals differ → Hedge accounting DISQUALIFIED under current ASC 815-20-25-67</text>
+      <text x="340" y="204" font-size="10" text-anchor="middle" fill="rgba(255,255,255,0.75)" letter-spacing="0.05em">Topic 848 relief expired December 31, 2024. No replacement guidance yet in effect.</text>
+    </svg>
+    <div class="chart-note">Source: FASB Board Meeting Handout, February 25, 2026; ISDA comment letters. The swap depicted is economically effective — its fair value is driven primarily by FX rates, not the interest rate mismatch. Under current GAAP, it nonetheless cannot qualify for hedge accounting.</div>
+  </div>
+
+  <h3>The Relief That Expired</h3>
+  <p>The FASB addressed this temporarily through Topic 848 (Reference Rate Reform), which provided optional expedients allowing entities to continue applying hedge accounting for float-for-float cross-currency swaps despite reset date mismatches. That relief sunset on December 31, 2024. No permanent replacement existed at the time of the February 25 meeting. Entities that relied on Topic 848 are now in a void where economically effective hedges cannot achieve hedge accounting designation.</p>
+
+  <h3>The Two Alternatives</h3>
+  <p>Staff presented two paths to restore hedge accounting eligibility:</p>
+
+  <div class="compare-table" style="overflow-x:auto;">
+    <table class="compare-table" style="min-width:580px;">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Alternative A (Staff Recommended)</th>
+          <th>Alternative B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Repricing requirement</strong></td>
+          <td>Intervals need only occur frequently enough to justify that variable payments/receipts are at a market rate (generally ≤3–6 months)</td>
+          <td>Retain alignment requirement, but allow qualification if reset dates are <em>predominantly</em> or <em>substantially all</em> aligned</td>
+        </tr>
+        <tr>
+          <td><strong>Quantitative assessment required?</strong></td>
+          <td><span class="tag-good">No</span> — leverages shortcut method concepts</td>
+          <td><span class="tag-bad">Yes</span> — additional test required</td>
+        </tr>
+        <tr>
+          <td><strong>Operational complexity</strong></td>
+          <td><span class="tag-good">Low</span></td>
+          <td><span class="tag-bad">Higher</span></td>
+        </tr>
+        <tr>
+          <td><strong>Historical precedent</strong></td>
+          <td><span class="tag-good">Aligned with existing shortcut method concepts</span></td>
+          <td>Introduces novel threshold — historically challenging under GAAP</td>
+        </tr>
+        <tr>
+          <td><strong>Board vote</strong></td>
+          <td><span class="tag-good">Unanimous support</span></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Multiple board members noted a drafting preference: the phrase "generally 3 to 6 months, or less" in Alternative A needs cleanup. As Chair Jones said, <em>"if we really mean a cap of six months, we should just say that — there are too many modifiers in there."</em> Staff confirmed a hard six-month cap would scope the same population, and board members agreed the drafting should be made unambiguous.</p>
+
+  <div class="callout-neutral">
+    <h4>Practitioner Watch</h4>
+    <p>Multinational entities that were relying on Topic 848 relief for float-for-float cross-currency swaps in net investment hedges should evaluate their current hedge accounting relationships immediately. If you dedesignated relationships after December 31, 2024, the forthcoming ASU — effective prospectively — would allow new designations to be established once effective. Consider early adoption once permitted. ISDA members should note that this change is directionally consistent with market feedback to FASB on net investment hedge operability and represents the narrowest possible fix rather than a broader FX hedging revision.</p>
+  </div>
+
+  <div class="rule-divider"><span>◆</span></div>
+
+  <!-- ── MEDIUM TERM ── -->
+  <span class="section-label" id="medium">Medium-Term Project</span>
+  <h2>PLM for Liabilities: The Sleeper Issue</h2>
+
+  <p>While the three short-term fixes address gaps in the current model, the medium-term project may ultimately affect more balance sheets. The portfolio layer method — available since 2022 for closed portfolios of assets — allows entities to designate a last-of-layer hedge of a portfolio's benchmark interest rate exposure using a single derivative against a defined layer of the portfolio, without requiring one-to-one asset designation.</p>
+
+  <p>Extending PLM to certain liabilities addresses a fundamental asymmetry for financial institutions. Banks manage interest rate risk across <em>both</em> sides of the balance sheet. The asset side has PLM. The liability side — specifically deposit portfolios like certificates of deposit and core deposits — does not. Insurance companies face a parallel problem with product liabilities that don't produce periodic contractual cash flows, making them incompatible with the existing partial-term fair value hedge framework.</p>
+
+  <p>The American Council of Life Insurers and the American Academy of Actuaries both submitted formal agenda requests on this topic. The board was unanimous in its enthusiasm: <em>"PLM for liabilities, I've always been interested in,"</em> said board member Sue Cosper. Chair Jones cautioned that scoping will be critical: <em>"There's an awful lot of things on the right side of the balance sheet. When we say PLM for liabilities, we may not mean all of them."</em></p>
+
+  <p>Staff indicated they plan to ask the board whether to formally add this project to the technical agenda later in 2026. Unlike the long-term project, PLM for liabilities is expected to proceed without touching the core pillars of hedge accounting.</p>
+
+  <div class="rule-divider"><span>◆</span></div>
+
+  <!-- ── LONG TERM ── -->
+  <span class="section-label" id="longterm">The Long Game</span>
+  <h2>Path 1 vs. Path 2: The Board's Real Choice</h2>
+
+  <p>The most consequential conversation at the February 25 meeting wasn't about the short-term project. It was about what comes next. All seven board members provided their perspectives on the long-term project, and the directional consensus was striking: nearly every member expressed preference for Path 2.</p>
+
+  <div class="path-compare">
+    <div class="path-card">
+      <div class="path-label">Path 1</div>
+      <h4>Rules-Based Reform</h4>
+      <ul>
+        <li>Retain the mechanics and core pillars of the current model</li>
+        <li>Relax documentation and effectiveness testing</li>
+        <li>Expand eligible hedged items, risks, and instruments</li>
+        <li>Net position hedging remains prohibited</li>
+        <li>More entities qualify for hedge accounting; the model itself unchanged</li>
+      </ul>
+      <div class="board-sentiment">Board Sentiment: <strong>Limited appetite.</strong> Most members see this as "where we've been" — more amendments to a framework that's already been heavily patched.</div>
+    </div>
+    <div class="path-card preferred">
+      <div class="path-label">Path 2 · Board-Preferred</div>
+      <h4>Principles-Based Rethink</h4>
+      <ul>
+        <li>Redefine the objective of hedge accounting to reflect risk management economics</li>
+        <li>Eliminate or substantially streamline complex mechanics of current model</li>
+        <li>Net position hedging permitted where it reflects management strategy</li>
+        <li>Single scalable model: works for simple corporate hedges AND complex bank ALM</li>
+        <li>Leverage management's existing documentation rather than building parallel</li>
+        <li>Disclosures redesigned around decision-usefulness, not compliance volume</li>
+      </ul>
+      <div class="board-sentiment">Board Sentiment: <strong>Strong consensus.</strong> Six of seven members explicitly favored Path 2 or expressed skepticism that Path 1 can accomplish the stated goals.</div>
+    </div>
+  </div>
+
+  <p>The candor on the board was notable. Christine McDonnell, with over a decade of FASB experience, offered what may be the most direct assessment: <em>"Between the two paths, I would be very reticent to go down Path 1. I think that's what we've been trying to do for a really long time... I would not spend a lot of time on Path 1. I think it would be better if the board decided that Path 2 just wasn't feasible to really just do a disclosure-only project."</em></p>
+
+  <div class="pull-quote">
+    <p>"Hedge accounting was written as a privilege, not a right. And I think we really want to flip that on its head — it should be reflecting the economics, and it should be something that's providing decision-useful information to investors."</p>
+    <cite>— Hillary Salo, FASB Board Member, February 25, 2026</cite>
+  </div>
+
+  <p>Fred Cannon drew the analogy that perhaps matters most for banking: <em>"I do think a step back is very important. A goal from my standpoint of the project really is to simplify, reflect the economics of hedging — that should expand significantly the use of hedge accounting by many entities."</em> He also cited academic research suggesting that when rules were relaxed in prior reforms, not only did hedge accounting expand but actual hedging and risk management activity expanded as well.</p>
+
+  <p>The board also noted an important contrast with the IASB, which is currently exploring a dual-model approach under its exposure draft on risk mitigation accounting — a new model layered on top of IFRS 9 for entities that manage risk on a net, entity-wide basis. The FASB staff explicitly does not recommend a dual-model approach, and the board concurred. The goal is one model, flexible enough to scale.</p>
+
+  <div class="callout">
+    <h4>The Disclosure Problem</h4>
+    <p>The board's discussion of disclosures deserves its own spotlight. Investors at large financial institutions have made clear they primarily use information from <em>earnings presentations and non-GAAP supplements</em> — not hedge accounting footnotes — because the GAAP disclosures are voluminous but strategically opaque.</p>
+    <p>Chair Jones put it plainly: "We tend to write disclosure requirements that make sense for one transaction. When we have a large volume of transactions, our disclosures are restrictive in the way they're drawn up, but I don't know what someone does with them when it's a huge volume of transactions." JPMorgan Chase's own earnings supplements, for example, present "net interest income excluding Markets" and "net yield on interest-earning assets excluding Markets" as non-GAAP measures specifically because the GAAP presentation — which includes the effect of hedges — is harder to parse in isolation.</p>
+    <p>The staff will analyze whether existing disclosures can be eliminated and what new ones might better convey an entity's actual risk exposures, strategic hedging rationale, and the cumulative effect of its risk management program — under either path.</p>
+  </div>
+
+  <div class="rule-divider"><span>◆</span></div>
+
+  <!-- ── PRACTITIONERS ── -->
+  <span class="section-label" id="practitioners">For Practitioners</span>
+  <h2>What This Means, Right Now and Looking Ahead</h2>
+
+  <h3>Immediate (2026): The Exposure Draft</h3>
+  <p>The staff will now draft a proposed ASU covering all three short-term issues. The board authorized a 60-day comment period, which is standard for a targeted improvement of this nature. Given the unanimous board vote and the depth of stakeholder vetting these issues have received, the probability of a final ASU that substantially mirrors the proposed approach is high. Early adoption on any date post-issuance is expected to be permitted.</p>
+
+  <p>For audit clients and preparers:</p>
+  <ul style="padding-left:24px; margin-bottom:22px; line-height:1.8;">
+    <li><strong>HTM portfolios:</strong> Begin evaluating whether existing economic hedges can be prospectively designated. Work through the documentation and designation requirements now so you're ready to move quickly once effective.</li>
+    <li><strong>Term SOFR hedges:</strong> Review existing fair value hedging strategies that were structured around SOFR OIS specifically. Assess whether redesignation using broader SOFR tenors would be advantageous.</li>
+    <li><strong>Net investment hedges:</strong> If you dedesignated float-for-float cross-currency swaps after December 31, 2024, flag these for prospective redesignation consideration once the ASU is final.</li>
+  </ul>
+
+  <h3>Medium Term (2026–2027): PLM for Liabilities</h3>
+  <p>Banks and insurance companies should begin internal assessments of which liability portfolios would be candidates for PLM if and when the guidance is extended. CD portfolios, demand deposit portfolios, and insurance product liabilities are the most-cited categories. The scoping question — which liabilities qualify — will be central to the project and will require significant engagement in the comment process.</p>
+
+  <h3>Long Term (2027+): The Model Question</h3>
+  <p>The Path 2 aspiration is real, but it is also generationally ambitious. Christine McDonnell noted that this is the kind of project where board members need to be "brought along on the journey" consistently, and where failure historically comes from two sources: board members not believing the output will be decision-useful, or not feeling they fully understand the unintended consequences of their decisions.</p>
+
+  <p>The FASB faces a genuine tension: stakeholders who most want change (banks, insurers, multinationals) have highly complex hedging strategies that push the model hardest. Stakeholders who are less vocal (smaller entities, non-financial companies) need the model to remain accessible. A Path 2 model that serves the first group at the expense of the second isn't politically viable — which is why board member Hillary Salo's floor is so important: <em>"No matter what under Path 2, it will not be harder for anyone to apply hedge accounting than it is today. That needs to be a baseline."</em></p>
+
+  <div class="callout-neutral">
+    <h4>Should You File a Comment Letter?</h4>
+    <p><strong>On the short-term exposure draft:</strong> If you or your clients are directly affected by any of the three issues — HTM hedging, Term SOFR designation, or cross-currency swaps — a comment letter is worth filing. The FASB specifically watches for preparer cost-benefit analysis, scoping edge cases, and effective date preferences. The 60-day window will go fast.</p>
+    <p><strong>On the long-term project:</strong> Watch for the staff's outreach plan, which the board expected at a future meeting. Entities that centrally manage entity-wide interest rate risk — banks, insurance companies, large multinationals — have the most to gain from Path 2 and the most to contribute to shaping it. A preliminary views document (rather than going straight to an exposure draft) may be the vehicle for early input on the conceptual model itself.</p>
+    <p>Crowe's National Office will be monitoring developments and will be issuing client alerts at key milestones. Subscribe to stay current.</p>
+  </div>
+
+  <div class="rule-divider"><span>◆</span></div>
+
+  <h2 style="border-top:none; padding-top:0; margin-top:8px;">The Bottom Line</h2>
+
+  <p>Hedge accounting has been incrementally patched for 27 years. The FASB's staff said it well in the meeting handout: the board's objective for hedge accounting has evolved toward more faithfully reflecting the economics of risk management activities, but <em>"the core pillars of the model have not"</em> — which is why it has become increasingly difficult to modernize the guidance without compromising those pillars.</p>
+
+  <p>The three short-term fixes address real, specific pain points with unanimous board support and high implementation probability. The medium-term PLM extension addresses a structural asymmetry that has frustrated practitioners for years. And the long-term conversation — a once-in-a-generation rethinking of whether hedge accounting should be a privilege or a right, a rules-based obstacle course or a principles-based reflection of actual risk management — has finally arrived on the agenda with a board willing to have it honestly.</p>
+
+  <p>The question is no longer whether hedge accounting will change. It's how bold the FASB is willing to be.</p>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p><strong>Principles &amp; Practice</strong> is written by Sean Prince, CPA/CFA, Partner in Crowe LLP's National Office. Sean leads Crowe's revenue recognition subject matter team and serves as AI Transformation Champion for the Audit Business Unit.</p>
+  <p>The views expressed are the author's own and do not represent the official positions of Crowe LLP. This article is for general informational and educational purposes only. Readers should consult their accounting advisors regarding application to specific facts and circumstances.</p>
+  <p style="margin-top:20px; font-size:12px; color:rgba(255,255,255,0.4);">Sources: FASB Board Meeting Handout (February 25, 2026); FASB Board Meeting Minutes Transcript (February 25, 2026); ISDA Comment Letters on ASC 815; SVB Financial Group 2022 Form 10-K; Federal Reserve OIG Material Loss Review of SVB; NBER Working Paper No. 32293; Federal Reserve Bank of Boston SRA Note 2023-01; ASU 2018-16; ASU 2025-09.</p>
+</footer>
+
+</body>
+</html>
